@@ -25,14 +25,14 @@
 
 
 <!--Register Form-->
-        <form action= "" class="register">
+        <form action= "./Includes/register.php" method="post" class="register">
             <h2>Register</h2>
             <input type = "text" name="fname" placeholder="Enter Your First Name">
             <input type = "text" name="lname" placeholder="Enter Your Last Name">
             <input type = "text" name="email" placeholder="Enter Your First Email">
-            <input type = "text" name="mobile " placeholder="Enter Your Mobile Number">
+            <input type = "text" name="mobile" placeholder="Enter Your Mobile Number">
             <input type = "password" name="pass" placeholder="Enter Your Password">
-            <input type = "password" name="re-pass" placeholder="Enter Your Password Again">
+            <input type = "password" name="re_pass" placeholder="Enter Your Password Again">
             <button type="submit" name="register-btn">Register</button>
         </form>
 

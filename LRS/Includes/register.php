@@ -35,43 +35,42 @@ if(isset($_POST["register-btn"] )){
     else if(passNotMatch($pass, $re_pass)){
         header("location: ../index.php?err=different_pass");
     }
-    else if(emailOrMobileAvailable($conn, $email,$mobile)){
+    else if(emailOrMobileAvailable($conn, $email, $mobile)){
         header("location: ../index.php?err=available_emailormobile");
     }
     else{
         //if all input are error free
-        registerNewUser($conn,$fname,$lname,$email,$mobile,$pass,$re_pass);
-       
+        registerNewUser($conn, $fname, $lname, $email, $mobile, $pass, $re_pass);
     }
 }
 else{
-    header("location: ../index.php ");
+    header("location: ../index.php");
     exit();
 }
 
 //function for register a new user
-function registerNewUser($conn,$fname,$lname,$email,$mobile,$pass,$re_pass){
+function registerNewUser($conn, $fname, $lname, $email, $mobile, $pass, $re_pass){
     //password encryption
     $passHashed= password_hash($pass, PASSWORD_DEFAULT);
     //Query
-    $sql = "INSERT INTO users (fname, lname, email, mobile, password) VALUES (?, ?, ?, ?, ?);";
+    $sql = "INSERT INTO users (Fname, Lname, Email, Mobile, Password) VALUES (?, ?, ?, ?, ?);";
    // Initialize the prepared statement
     $stmt = mysqli_stmt_init($conn);
    //bind the statement with the query and check errors
-    if(!mysqli_stmt_prepare($stmt,$sql)){
-    header("location: ../index.php?err=failedstmt");
+    if(!mysqli_stmt_prepare($stmt, $sql)){
+        header("location: ../index.php?err=failedstmt");
   
    }
    else{
        //bind daata with the statement
-       mysqli_stmt_bind_param($stmt, "sssis", $fname, $lname, $email, $mobile, $pass);
+       mysqli_stmt_bind_param($stmt, "sssis", $fname, $lname, $email, $mobile, $passHashed);
       //Execute the statement
        mysqli_stmt_execute($stmt);
       //close the statement
        mysqli_stmt_close($stmt);
 
        header("location: ../index.php?err=noerrors");
-          
+   
    }
 }
 ?>

@@ -14,6 +14,18 @@ function inputsEmptyRegister($fname, $lname, $email, $mobile, $pass, $re_pass){
     return $value;
 }
 
+// check if login inputs are empty
+function inputsEmptyLogin($email, $pass){
+    $value;
+    if(empty($email) || empty($pass)){
+        $value = true;
+    }
+    else{
+        $value = false;
+    }
+    return $value;
+}
+
 // check if names are invalid
 function nameInvalid($fname, $lname){
     $value;
@@ -81,12 +93,12 @@ function passNotMatch($pass,$re_pass){
 function emailOrMobileAvailable($conn, $email,$mobile){
     $value;
    // query
-   $sql = "SELECT * FROM users WHERE email = ?;";
+   $sql = "SELECT * FROM users WHERE email = ? OR mobile = ?;";
    // Initialize the prepared statement
    $stmt = mysqli_stmt_init($conn);
    //bind the statement with the query and check errors
    if(!mysqli_stmt_prepare($stmt,$sql)){
-    header("location: ../index.php?err=failedstmt");
+      header("location: ../index.php?err=failedstmt");
     exit();
    }
    else{
@@ -108,6 +120,6 @@ function emailOrMobileAvailable($conn, $email,$mobile){
    mysqli_stmt_close($stmt);
 
    return $value;
-}
+ }
 
 ?>
