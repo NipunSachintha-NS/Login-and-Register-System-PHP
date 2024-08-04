@@ -11,11 +11,7 @@
         $remember = $_POST["re-check"];
 
         //Input validation
-<<<<<<< HEAD
         if(inputsEmptyLogin($email, $pass)){
-=======
-        if(inputsEmptyLogin($emai, $pass)){
->>>>>>> 52c9ee1b6a23a92784a80ad4a9fc31d63f11d700
             header("location: ../index.php?err=empty_inputs");
         }
         else if(emailInvalid($email)){
@@ -42,17 +38,12 @@
         //bind the statement with the query and check errors
         if(!mysqli_stmt_prepare($stmt,$sql)){
             header("location: ../index.php?err=failedstmt");
-<<<<<<< HEAD
-=======
-   
->>>>>>> 52c9ee1b6a23a92784a80ad4a9fc31d63f11d700
     }
     else{
         //bind daata with the statement
         mysqli_stmt_bind_param($stmt, "s", $email);
        //Execute the statement
         mysqli_stmt_execute($stmt);
-<<<<<<< HEAD
        // Save result if available
         $data = mysqli_stmt_get_result($stmt);
 
@@ -87,14 +78,4 @@
     }
 
 
-=======
-        
-       //close the statement
-        mysqli_stmt_close($stmt);
- 
-        header("location: ../index.php?err=noerrors");
-          
-    }
-
->>>>>>> 52c9ee1b6a23a92784a80ad4a9fc31d63f11d700
 ?>
