@@ -60,6 +60,21 @@
                 $_SESSION["user_lname"] = $row["lname"];
                 $_SESSION["user_mobile"] = $row["mobile"];
 
+                //if remember me checked
+                if(isset($remember)){
+                    // create cookies for email and password
+                    setcookie("emailcookie",$email, time() + (3600*24*7), "/");
+                    setcookie("passwordcookie",$pass, time() + (3600*24*7), "/");
+                }
+                else{
+                    //destroy cookies value
+                    if(isset($_COOKIE["emailcookie"])){
+                        setcookie("emailcookie","", time() - (3600*24*7), "/");
+                    }
+                    if(isset($_COOKIE["passwordcookie"])){
+                        setcookie("passwordcookie","", time() - (3600*24*7), "/");
+                    }
+                }
                 header("location: ../profile.php"); 
 
             }
